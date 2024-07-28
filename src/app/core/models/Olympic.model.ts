@@ -7,7 +7,7 @@ example of an olympic country:
     participations: []
 }
 */
-import { Participation } from "./Participation";
+import { Participation } from "./Participation.model";
 
 export interface Olympic {
   id?: number,

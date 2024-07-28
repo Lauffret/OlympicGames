@@ -1,3 +1,10 @@
 <h2>Olympic games app</h2>
 <hr />
 <p>{{ (olympics$ | async)?.length }} data loaded</p>
+
+<ngx-charts-pie-chart [results]="dataPC"
+                      [view]="viewPC"
+                      [animations]="animationPC"
+                      [scheme]="colorSchemePC"
+                      [labels]="labelsPC"
+                      [tooltipText]="percentageFormatterPC"></ngx-charts-pie-chart>
