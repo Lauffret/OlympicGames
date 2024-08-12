@@ -1,10 +1,16 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+<div class="content-container">
 
-<ngx-charts-pie-chart [results]="dataPC"
-                      [view]="viewPC"
-                      [animations]="animationPC"
-                      [scheme]="colorSchemePC"
-                      [labels]="labelsPC"
-                      [tooltipText]="percentageFormatterPC"></ngx-charts-pie-chart>
+  <h1 class="title">Medals per Country</h1>
+
+  <div class="container">
+    <div class="container-item">Number of JOs<p class="container-value">{{ numberOfJOs }}</p></div>
+    <div class="container-item">Number of countries<p class="container-value">{{ numberOfCountries }}</p></div>
+  </div>
+
+  <ngx-charts-pie-chart class="graph-pie"
+                        [results]="dataPC"
+                        [view]="viewPC"
+                        [animations]="animationPC"
+                        [labels]="labelsPC"
+                        [tooltipText]="tooltipPC"></ngx-charts-pie-chart>
+</div>

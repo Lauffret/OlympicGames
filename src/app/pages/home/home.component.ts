@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, map } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Olympic } from 'src/app/core/models/Olympic.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,46 +10,66 @@ import { Olympic } from 'src/app/core/models/Olympic.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public olympics$: Observable<any> = of(null);
+
+  public olympics!: Olympic[];
+  public dataPC: { name: any, value: number }[] = [];
+  public numberOfCountries = 0;
+  public numberOfJOs = 0;
+  private destroy$!: Subject<boolean>;
+
+
   // Options for Pie Chart
-  dataPC = [
-    {
-      name: "Rest",
-      value: 53.24,
-    },
-    {
-      name: "China",
-      value: 18.47,
-    },
-    {
-      name: "India",
-      value: 17.7,
-    },
-    {
-      name: "USA",
-      value: 4.25,
-    },
-    {
-      name: "Indonesia",
-      value: 3.51,
-    },
-    {
-      name: "Pakistan",
-      value: 2.83,
-    },
-  ];
-  viewPC: [number, number] = [700, 400];
+  viewPC: [number, number] = [600, 350];
   animationPC = true;
-  colorSchemePC = "vivid";
   labelsPC = true;
-  percentageFormatterPC(data: any): string {
-    return data.value + "%";
+
+  tooltipPC(data: any): string {
+    return data.data.name + "<br/>" + data.data.value;
   }
-  
-  constructor(private olympicService: OlympicService) {}
+
+  constructor(private olympicService: OlympicService, private router: Router) { }
 
   ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympics();
+    this.olympicService.getOlympics().subscribe((olympics: Olympic[]) => {
+      this.olympics = olympics;
+      this.numberOfCountries = this.olympics.length;
+      this.setDataPC();
+      this.getNumberOfJOs();
+      takeUntil(this.destroy$);
+    });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+  }
+
+  setDataPC(): void {
+    this.dataPC = this.olympics.map((olympic: Olympic) => ({
+      name: olympic.country,
+      value: this.getNumberOfParticipation(olympic)
+    }));
+  }
+
+  getNumberOfParticipation(olympic: Olympic): number {
+    let participation = 0;
+
+    olympic.participations?.map((value) => { participation += value.medalsCount != null ? value.medalsCount : 0 } )
+
+    return participation;
+  }
+
+  getNumberOfJOs(): void {
+    const years = new Set<number>();
+
+    this.olympics?.forEach(country => {
+      country.participations?.forEach(participation => {
+        participation.year != null ? years.add(participation.year) : ""
+      });
+    });
+    this.numberOfJOs = years.size;
+  }
+
+  onSelectCountry(event: any): void {
+    this.router.navigate(['/country', event]);
+  }
 }
