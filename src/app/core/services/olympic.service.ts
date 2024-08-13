@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic.model';
 
@@ -19,10 +19,11 @@ export class OlympicService {
       catchError((error, caught) => {
         // TODO: improve error handling
         console.error(error, caught);
+        console.error('Error loading Olympics data:', error);
         // can be useful to end loading state and let the user know something went wrong
         this.olympics$.next([]);
         this.olympics$.complete();
-        return caught;
+        return of([]);
       })
     );
   }

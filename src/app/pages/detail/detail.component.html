@@ -1,0 +1,29 @@
+<div class="content-container" *ngIf="country">
+
+  <h1 class="title">{{ countryName }}</h1>
+
+  <div class="container">
+    <div class="container-item">
+      Number of entries
+      <p class="container-value">{{ nbEntries }}</p>
+    </div>
+    <div class="container-item">
+      Total number medals
+      <p class="container-value">{{ nbOfMedals }}</p>
+    </div>
+    <div class="container-item">
+      Total number of athletes
+      <p class="container-value">{{ nbOfAthletes }}</p>
+    </div>
+  </div>
+  <ngx-charts-line-chart [view]="viewLC"
+                         [results]="dataLC"
+                         [xAxis]="true"
+                         [yAxis]="true"
+                         [showGridLines]="showGridLinesLC"
+                         [xAxisTickFormatting]="yearsLC"
+                         [yAxisTickFormatting]="nbMedalsLC">
+  </ngx-charts-line-chart>
+
+  <button (click)="backPage()">Home</button>
+</div>
