@@ -1,29 +1,54 @@
+[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+
 # OlympicGames
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+**OlympicGames** is a web application that allows users to view information about different countries participating in the Olympics. Users can explore data such as medal counts, athlete details, and historical participation by country.
 
-Don't forget to install your node_modules before starting (`npm install`).
+## Technologies
+- **TypeScript** (TS)
+- **SCSS**
 
-## Development server
+## Run the Application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run the OlympicGames application locally, follow these steps:
 
-## Build
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/OlympicGames.git
+   cd OlympicGames
+   ```
+   
+2. **Install dependencies:**
+Ensure you have Node.js and Angular CLI installed. Then, install the required packages:
+    ```bash
+   npm install
+    ```
+    
+3. **Run the application:**
+Start the development server:
+    ```bash
+    ng serve
+    ```
+    
+    4.**Open your browser:**
+    Navigate to http://localhost:4200 to view the application.
+    The Angular CLI defaults to port 4200, but if you prefer a different port, you can run *ng serve --port 4500* to specify it.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    5.**Build the project for production:**
+    If you want to build the project for production, run:
+      ```bash
+      ng build --prod
+      ```
+    The production files will be generated in the dist/ directory.
 
-## Where to start
+## Contribute to the Project
+Contributions are welcome! If you would like to contribute to the OlympicGames project, please follow these steps:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature-name`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature-name`).
+5. Open a pull request.
 
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
-
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
-
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and the `olympic.service.ts`.
-
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
-
-You're now ready to implement the requested features.
-
-Good luck!
+## Authors
+- **Léa AUFFRET** - [GitHub Profile](https://github.com/Lauffret)
