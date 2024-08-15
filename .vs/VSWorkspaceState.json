@@ -4,11 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\core",
-    "\\src\\app\\core\\models",
     "\\src\\app\\core\\services",
     "\\src\\app\\pages",
+    "\\src\\app\\pages\\detail",
     "\\src\\app\\pages\\home",
-    "\\src\\assets"
+    "\\src\\assets",
+    "\\src\\assets\\mock"
   ],
+  "SelectedNode": "\\src\\app\\pages\\home\\home.component.scss",
   "PreviewInSolutionExplorer": false
 }

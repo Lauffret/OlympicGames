@@ -1,5 +1,3 @@
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
-
 .content-container {
   display: flex;
   flex-direction: column;
@@ -59,13 +57,4 @@
   .tooltip-caret.position-top {
     border-top-color: #2F808E !important;
   }
-}
-
-.medal {
-  content: "\f091"; /* Font Awesome medal icon code */
-  font-family: 'Font Awesome 5 Free'; /* Font Awesome family */
-  font-weight: 900; /* Font Awesome free solid icons weight */
-  font-size: 16px; /* Icon size */
-  color: #ffd700; /* Icon color */
-  margin-right: 8px; /* Space between icon and text */
 }

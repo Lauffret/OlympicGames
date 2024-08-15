@@ -16,14 +16,20 @@
       <p class="container-value">{{ nbOfAthletes }}</p>
     </div>
   </div>
-  <ngx-charts-line-chart [view]="viewLC"
+  <ngx-charts-line-chart  #chart [view]="viewLC"
                          [results]="dataLC"
                          [xAxis]="true"
                          [yAxis]="true"
+                         [animations]="animationsLC"
                          [showGridLines]="showGridLinesLC"
                          [xAxisTickFormatting]="yearsLC"
                          [yAxisTickFormatting]="nbMedalsLC">
   </ngx-charts-line-chart>
-
   <button (click)="backPage()">Home</button>
+</div>
+<div class="content-container" *ngIf="!country">
+  <div class="center">
+    <h2>No corresponding id found</h2>
+    <a routerLink="">Go back</a>
+  </div>
 </div>

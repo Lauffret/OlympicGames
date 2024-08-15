@@ -20,10 +20,11 @@ export class DetailComponent implements OnInit {
 
   public dataLC: { name: string, series: { value: number, name: number }[] }[] = [];
 
-  viewLC: [number, number] = [700, 400];
+  viewLC: [number, number] = [600, 400];
   showGridLinesLC = true;
   xAxisLC = true;
   yAxisLC = true;
+  animationsLC = false;
 
   nbMedalsLC(nbMedal: number = 0): string {
     return `${nbMedal} medals`;
@@ -53,36 +54,38 @@ export class DetailComponent implements OnInit {
     this.dataLC = [];
 
     // Check if `country` is available
-    if (!this.country) return;
+    if (this.country) {
 
-    let serie: { value: number, name: number }[] = [];
-    this.countryName = this.country?.country ?? "";
-    this.nbEntries = this.country?.participations?.length ?? 0;
 
-    // Accumulate data
-    this.country?.participations?.forEach(participation => {
-      let nbMedal = participation.medalsCount ?? 0;
-      let nbAthletes = participation.athleteCount ?? 0;
+      let serie: { value: number, name: number }[] = [];
+      this.countryName = this.country?.country ?? "";
+      this.nbEntries = this.country?.participations?.length ?? 0;
 
-      this.nbOfAthletes += nbAthletes;
-      this.nbOfMedals += nbMedal;
+      // Accumulate data
+      this.country?.participations?.forEach(participation => {
+        let nbMedal = participation.medalsCount ?? 0;
+        let nbAthletes = participation.athleteCount ?? 0;
 
-      if (nbMedal < this.minNbMedals) {
-        this.minNbMedals = nbMedal;
-      }
+        this.nbOfAthletes += nbAthletes;
+        this.nbOfMedals += nbMedal;
 
-      if (nbMedal > this.maxNbMedals) {
-        this.maxNbMedals = nbMedal;
-      }
+        if (nbMedal < this.minNbMedals) {
+          this.minNbMedals = nbMedal;
+        }
 
-      serie.push({
-        value: nbMedal,
-        name: participation.year ?? 0
+        if (nbMedal > this.maxNbMedals) {
+          this.maxNbMedals = nbMedal;
+        }
+
+        serie.push({
+          value: nbMedal,
+          name: participation.year ?? 0
+        });
       });
-    });
 
-    // Add series to dataLC
-    this.dataLC.push({ name: this.countryName ?? "", series: serie });
+      // Add series to dataLC
+      this.dataLC.push({ name: this.countryName ?? "", series: serie });
+    }
   }
 
   backPage(): void {

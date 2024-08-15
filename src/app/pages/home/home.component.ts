@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   public dataPC: { name: string, value: number }[] = [];
   viewPC: [number, number] = [600, 350];
-  animationPC = true;
+  animationPC = false;
   labelsPC = true;
 
   tooltipPC(data: any): string {
